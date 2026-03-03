@@ -1,6 +1,6 @@
 # ISU-Undergraduate-Research-F25-S26
 
-Machine Unlearning and Uncertainty Quantification Experiments
+## Machine Unlearning and Uncertainty Quantification Experiments
 
 This repository contains a series of experiments exploring the relationship between machine unlearning and predictive uncertainty.
 
