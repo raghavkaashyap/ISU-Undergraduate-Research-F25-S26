@@ -6,7 +6,7 @@ This repository contains a series of experiments exploring the relationship betw
 
 ## Experiment 2: Removing Different Proportions of Data
 
-This experiment investigates how removing an increasing proportion of training data affects the model's uncertainty. We unlearn 5%, 10%, 15%, and 20% of the CIFAR-10 training set and measure the change in Expected Calibration Error (ECE) and Brier Score (BS) using MC Dropout for uncertainty estimation.
+This experiment investigates how removing an increasing proportion of training data affects the model's uncertainty. We unlearn 5%, 10%, 15%, and 20% of the CIFAR-10 training set and measure the change in Expected Calibration Error (ECE) and Brier Score (BS) using MC Dropout for uncertainty estimation on the CIFAR-10 test set.
 
 The experiment is conducted with two different model architectures:
 
@@ -24,7 +24,7 @@ This experiment explores how unlearning different *types* of data impacts predic
 *   **Gaussian-Noise Instances**: 5% of training samples corrupted with Gaussian noise.
 *   **Modified-Label Instances**: 5% of training samples with their labels randomly flipped.
 
-Uncertainty is measured using ECE and Brier Score after applying temperature scaling.
+Uncertainty is measured using ECE and Brier Score after applying temperature scaling on the CIFAR-10 test set.
 
 The experiment is conducted with two different model architectures:
 
