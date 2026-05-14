@@ -2,34 +2,36 @@
 
 ## Machine Unlearning and Uncertainty Quantification Experiments
 
-This repository contains a series of experiments exploring the relationship between machine unlearning and predictive uncertainty.
+This repository studies how machine unlearning affects model calibration and predictive uncertainty on CIFAR-10. The notebooks compare uncertainty behavior across different unlearning settings and model architectures.
 
-## Experiment 2: Removing Different Proportions of Data
+## Experiment Suite Overview
 
-This experiment investigates how removing an increasing proportion of training data affects the model's uncertainty. We unlearn 5%, 10%, 15%, and 20% of the CIFAR-10 training set and measure the change in Expected Calibration Error (ECE) and Brier Score (BS) using MC Dropout for uncertainty estimation on the CIFAR-10 test set.
+### 1) Removing Different Proportions of Data
 
-The experiment is conducted with two different model architectures:
+These notebooks analyze how uncertainty changes when progressively larger portions of the training set are unlearned (5%, 10%, 15%, and 20%). The evaluation focuses on Expected Calibration Error (ECE) and Brier Score (BS), using MC Dropout uncertainty estimation on the CIFAR-10 test set.
 
-*   **`Experiments/removing_different_proportions.ipynb`**: A simple Convolutional Neural Network (CNN).
-*   **`Experiments/removing_different_proportions_resnet18.ipynb`**: A ResNet-18 architecture.
+- **`Experiments/removing_different_proportions.ipynb`**: Proportion-based unlearning with a CNN.
+- **`Experiments/removing_different_proportions_resnet18.ipynb`**: Proportion-based unlearning with ResNet-18.
 
-### Findings
-In both CNN and ResNet-18 models, we observe that as the proportion of unlearned data increases, both ECE and Brier Score consistently rise. This suggests that removing more data through unlearning leads to higher predictive uncertainty, as the model becomes less confident in its predictions.
+**Key observation:** as more data is unlearned, both ECE and Brier Score increase, indicating greater predictive uncertainty.
 
-## Experiment 4: Unlearning Different Data Modalities
+### 2) Unlearning Different Data Modalities
 
-This experiment explores how unlearning different *types* of data impacts predictive uncertainty. We unlearn a fixed 5% of the CIFAR-10 training data, but vary the modality of the data being removed:
+These notebooks keep the unlearning ratio fixed at 5% and vary what kind of samples are removed:
 
-*   **Random Instances**: A random 5% of the training data.
-*   **Gaussian-Noise Instances**: 5% of training samples corrupted with Gaussian noise.
-*   **Modified-Label Instances**: 5% of training samples with their labels randomly flipped.
+- Random instances from the training set
+- Gaussian-noise-corrupted instances
+- Modified-label instances (randomly flipped labels)
 
-Uncertainty is measured using ECE and Brier Score after applying temperature scaling on the CIFAR-10 test set.
+Uncertainty is evaluated with ECE and Brier Score after temperature scaling on CIFAR-10 test data.
 
-The experiment is conducted with two different model architectures:
+- **`Experiments/unlearning_different_data_modalities.ipynb`**: Data-modality unlearning with a CNN.
+- **`Experiments/unlearning_different_data_modalities_resnet18.ipynb`**: Data-modality unlearning with ResNet-18.
 
-*   **`Experiments/unlearning_different_data_modalities.ipynb`**: A simple Convolutional Neural Network (CNN).
-*   **`Experiments/unlearning_different_data_modalities_resnet18.ipynb`**: A ResNet-18 architecture.
+**Key observation:** unlearning modified-label samples has the strongest negative impact on calibration and uncertainty metrics.
 
-### Findings
-Across both model architectures, unlearning modified-label instances results in the most significant increase in both ECE and Brier Score. This indicates that removing "hard" or mislabeled examples has a more pronounced effect on model uncertainty compared to removing random or noisy data.
+## Supporting Notebooks
+
+- **`Experiments/train_uncertainty_demo.ipynb`**: Training-focused uncertainty demonstration.
+- **`Experiments/train_unlearn_demo.ipynb`**: Training and unlearning workflow demonstration.
+- **`Experiments/uncertainty_demo.ipynb`**: Standalone uncertainty estimation demonstration.
